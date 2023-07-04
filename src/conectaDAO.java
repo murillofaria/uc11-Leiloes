@@ -4,11 +4,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-public class conectaDAO {
+public class ConectaDAO {
+
+    Connection conn = null;
 
     public Connection connectDB() {
-        Connection conn = null;
-
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/uc11-leilao";
@@ -21,5 +21,4 @@ public class conectaDAO {
         }
         return conn;
     }
-
 }

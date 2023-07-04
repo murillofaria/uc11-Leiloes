@@ -5,31 +5,31 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ProdutosDAO {
 
     Connection conn;
     PreparedStatement prep;
-    ResultSet resultset;
-    ArrayList<ProdutosDTO> listagem = new ArrayList<>();
+    ResultSet resultSet;
 
     public void cadastrarProduto(ProdutosDTO produto) {
-        conn = new conectaDAO().connectDB();
+        conn = new ConectaDAO().connectDB();
 
         if (conn != null) {
             try {
                 String sql = "INSERT INTO produtos (nome, valor, status) VALUES(?, ?, ?)";
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                prep = conn.prepareStatement(sql);
 
                 String nome = produto.getNome();
                 int valor = produto.getValor();
                 String status = produto.getStatus();
 
-                preparedStatement.setString(1, nome);
-                preparedStatement.setInt(2, valor);
-                preparedStatement.setString(3, status);
+                prep.setString(1, nome);
+                prep.setInt(2, valor);
+                prep.setString(3, status);
 
-                int query = preparedStatement.executeUpdate();
+                int query = prep.executeUpdate();
 
                 if (query > 0) {
                     JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
@@ -42,8 +42,26 @@ public class ProdutosDAO {
         }
     }
 
-    public ArrayList<ProdutosDTO> listarProdutos() {
+    public List<ProdutosDTO> listarProdutos() {
+        conn = new ConectaDAO().connectDB();
+        List<ProdutosDTO> listagem = new ArrayList<>();
+        String sql = "SELECT * FROM produtos";
+        try {
+            prep = conn.prepareStatement(sql);
+            resultSet = prep.executeQuery();
 
+            while (resultSet.next()) {
+                ProdutosDTO produtoDto = new ProdutosDTO();
+                produtoDto.setId(resultSet.getInt("id"));
+                produtoDto.setNome(resultSet.getString("nome"));
+                produtoDto.setValor(resultSet.getInt("valor"));
+                produtoDto.setStatus(resultSet.getString("status"));
+
+                listagem.add(produtoDto);
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar produtos: " + erro.getMessage());
+        }
         return listagem;
     }
 
