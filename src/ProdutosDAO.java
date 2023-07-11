@@ -71,15 +71,15 @@ public class ProdutosDAO {
 
     public void venderProduto(int id) {
         conn = new ConectaDAO().connectDB();
-        String sql = "UPDATE produtos SET status = 'Vendido' WHERE id = ?";
+        String sql = "UPDATE produtos SET status = 'Vendido' WHERE id = ? && status = 'A Venda'";
         try {
             prep = conn.prepareStatement(sql);
             prep.setInt(1, id);
             int idResultado = prep.executeUpdate();
-            if (idResultado >= 1) {
+            if (idResultado == 1) {
                 JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Produto já vendido!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Produto já vendido.");
             }
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro ao vender o produto: " + erro.getMessage());

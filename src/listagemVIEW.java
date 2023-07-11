@@ -46,7 +46,7 @@ public class ListagemVIEW extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(listaProdutos);
 
-        jlblListaProdutos.setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
+        jlblListaProdutos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jlblListaProdutos.setText("Lista de Produtos");
 
         jlblVenderProduto.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
@@ -115,7 +115,7 @@ public class ListagemVIEW extends javax.swing.JFrame {
                     .addComponent(btnVender))
                 .addGap(29, 29, 29)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVendas)
                     .addComponent(btnVoltar))
@@ -135,8 +135,8 @@ public class ListagemVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
-        //vendasVIEW vendas = new vendasVIEW(); 
-        //vendas.setVisible(true);
+        VendasVIEW vendas = new VendasVIEW(); 
+        vendas.setVisible(true);
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -212,5 +212,4 @@ public class ListagemVIEW extends javax.swing.JFrame {
             model.addRow(obj);
         }
     }
-
 }
