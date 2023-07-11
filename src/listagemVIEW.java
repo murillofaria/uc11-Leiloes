@@ -200,7 +200,7 @@ public class ListagemVIEW extends javax.swing.JFrame {
         listaProdutos.setRowSorter(new TableRowSorter(model));
         model.setNumRows(0);
 
-        List<ProdutosDTO> listagem = produtoDao.listarProdutos();
+        List<ProdutosDTO> listagem = produtoDao.listarProdutos("");
 
         for (ProdutosDTO p : listagem) {
             Object[] obj = new Object[]{
